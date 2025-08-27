@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Diccionario que mapea nombres de programas a sus rutas completas.
 # Esto hace que el script sea más flexible y fácil de configurar.
 PROGRAM_PATHS = {
-    'vscode': "C:\\Users\\paulh\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    'visual studio': "C:\\Users\\paulh\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
     # Agrega otros programas aquí si lo deseas.
     # Por ejemplo: 'chrome': "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     # 'notepad': "notepad.exe"
