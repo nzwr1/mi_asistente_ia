@@ -3,7 +3,13 @@ import os
 import speech_recognition as sr
 import pyttsx3 
 import google.generativeai as genai
-from config import GEMINI_API_KEY
+from dotenv import load_dotenv
+
+
+# Cargar las variables del archivo .env
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
 # Configura la API con tu clave
 genai.configure(api_key=GEMINI_API_KEY)
