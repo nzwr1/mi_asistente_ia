@@ -1,15 +1,29 @@
-import os
-import google.generativeai as genai
-from dotenv import load_dotenv
+# Importa las librerías necesarias
+import requests
+import json
 
+# URL del servidor local de tu agente
+url = 'http://127.0.0.1:5000/ejecutar-comando'
 
-# Cargar las variables del archivo .env
-load_dotenv()
+# Define el comando JSON que quieres enviar
+# El valor de "nombre_programa" debe coincidir con una clave en el diccionario de tu agente
+comando = {
+    "accion": "abrir_programa",
+    "nombre_programa": "vscode" 
+}
 
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+# Define el encabezado de la petición
+headers = {'Content-Type': 'application/json'}
 
-genai.configure(api_key=GEMINI_API_KEY)
+try:
+    # Envía la petición POST al agente local
+    response = requests.post(url, data=json.dumps(comando), headers=headers)
+    response.raise_for_status()  # Lanza un error para códigos de estado 4xx/5xx
 
-for model in genai.list_models():
-  if 'generateContent' in model.supported_generation_methods:
-    print(model.name)
+    # Imprime la respuesta del servidor
+    print("Respuesta del servidor:")
+    print(response.json())
+
+except requests.exceptions.RequestException as e:
+    # Maneja cualquier error en la petición
+    print(f"Error al enviar la petición: {e}")
